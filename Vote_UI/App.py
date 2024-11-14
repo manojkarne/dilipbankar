@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 # SQLite connection
-conn = sqlitecloud.connect('sqlitecloud://chasuqamnk.sqlite.cloud:8860/userdata_121?apikey=0IZOcX8va89btO7M19jVGeWWfKsh83bx8BJLf3GLGh0')
+conn = sqlitecloud.connect('sqlitecloud://chasuqamnk.sqlite.cloud:8860/272-voter.db?apikey=0IZOcX8va89btO7M19jVGeWWfKsh83bx8BJLf3GLGh0')
 create_conn = sqlitecloud.connect('sqlitecloud://chasuqamnk.sqlite.cloud:8860/userdata_123?apikey=0IZOcX8va89btO7M19jVGeWWfKsh83bx8BJLf3GLGh0')
 # conn.row_factory = sqlite3.Row
 @app.route('/search_voter', methods=['GET'])
