@@ -129,7 +129,7 @@
  <script src="https://kit.fontawesome.com/8d62bd631d.js" crossorigin="anonymous"></script>
   
  <!-- Bootstrap JS and dependencies -->
- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
@@ -767,7 +767,7 @@
       var BoothName=  $("#txtBoothName").text() ;
       var CardNo=  $("#txtCardNoDetails").text() ;
 
-
+InsertInToContactNoList(ConstNo, YadiBhag, SrNo, MobileNo,"sms");
         var Body = "विधानसभा: " + ACName + " \nयादी क्र:" + YadiBhag + " \nअ.क्र:" + SrNo + "\nनाव: " + FullName + "\nBooth: " + BoothName + "\n\nधन्यवाद! \nदिलीपराव शंकरराव बनकर  \nराष्ट्रवादी \nचिन्ह:घड्याळ";
 
 
@@ -811,14 +811,30 @@
      
 
 
-       // InsertInToContactNoList(ConstNo, YadiBhag, SrNo, MobileNo);
+      InsertInToContactNoList(ConstNo, YadiBhag, SrNo, MobileNo,"whatsapp");
 
       
 
         window.location = "https://api.whatsapp.com/send?&phone=+91" + document.getElementById('txtMobileNo').value + "&text=" + "विधानसभा: " + ACName + " %0a" + "यादी क्र: " + YadiBhag + " %0a" + "अ.क्र: " + SrNo + " %0a" + "नाव: *" + FullName + "* %0a" + "कार्ड नं: " + CardNo + " %0aBooth: *" + BoothName + "*%0a%0aधन्यवाद! %0a*दिलीपराव शंकरराव बनकर*%0a*राष्ट्रवादी*%0a*चिन्ह:घड्याळ*%0a *अ.क्र.- १*%0a%0aयेत्या विधानसभा 2024 निवडणूकीसाठी 121-निफाड  विधानसभेत तुमचे नाव शोधायचे असल्यास ** ह्यांच्या माध्यमातून Voter Search Link मधून आपले व आपल्या ओळखीतील लोकांचे नाव शोधा आणि त्याचे Details Whatsapp किंवा SMS द्वारे लोकांना पाठवा. %0a%0a%0ahttps://dilipkakabankar.thelcsindia.in/";
 
     }
-            function showVoterDetails(abc,WA_Or_SMS)
+function InsertInToContactNoList(ConstNo, YadiBhag, SrNo, MobileNo,Type)
+                 {
+                  $.ajax ({
+    url: "https://ganeshbhaugite.thelcsindia.in/create_user_share",
+    type: "POST",
+    data: JSON.stringify({part_no:YadiBhag,srno:SrNo,mobileno:MobileNo,type:Type}),
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+    success: function(data,status){ 
+                    debugger;
+                    }
+});
+       
+                 
+                 }
+                 
+                 function showVoterDetails(abc,WA_Or_SMS)
         {
             console.log(abc);
          var name=$(abc).closest(".card").find(".name").text();
